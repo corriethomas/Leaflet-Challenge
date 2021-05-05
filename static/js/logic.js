@@ -94,7 +94,7 @@ var earthquakes = [{
 for (var i = 0; i < earthquakes.length; i++) {
     let quake = earthquakes[i];
     L.marker(quake.location)
-    .bindPopup("<h1>ID: " + quake.id + "</h1> <hr> <h3>Depth: " + quake.depth + "</h3>")
+    .bindPopup("<h1>ID: " + quake.id + "</h1> <hr> <h3>Magnitude: " + quake.mag + "</h3>")
     .addTo(myMap);
 }
 
