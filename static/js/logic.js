@@ -96,7 +96,12 @@ for (var i = 0; i < earthquakes.length; i++) {
     L.marker(quake.location)
     .bindPopup("<h1>ID: " + quake.id + "</h1> <hr> <h3>Magnitude: " + quake.mag + "</h3>")
     .addTo(myMap);
-}
+};
+
+
+// I tried to pull the data from the website to plug into
+// variables, but I haven't figured it out yet. Still working
+// on it, but any insight would be appreciated!
 
 // var lat = [];
 // var long = [];
@@ -118,5 +123,3 @@ for (var i = 0; i < earthquakes.length; i++) {
 //     console.log(depth);
 //     console.log(mag);
 // });
-
-// Markers
