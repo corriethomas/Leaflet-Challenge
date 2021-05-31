@@ -8,7 +8,7 @@ let baseMap = L.map("mapid", {
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
-    maxZoom: 18,
+    maxZoom: 15,
     zoomOffset: -1,
     id: "mapbox/streets-v11",
     accessToken: API_KEY
@@ -31,13 +31,13 @@ d3.json(geodata).then(function(data) {
     // Create function to get the marker colors
     function markercolor(depth) {
         switch (true) {
-            case depth > 80:
-                return "red";
-            case depth > 60:
-                return "orange";
             case depth > 40:
-                return "yellow";
+                return "red";
+            case depth > 30:
+                return "orange";
             case depth > 20:
+                return "yellow";
+            case depth > 10:
                 return "green";
             case depth > 0:
                 return "blue";
@@ -55,7 +55,7 @@ d3.json(geodata).then(function(data) {
                 color: "black",
                 weight: 1,
                 opacity: 1,
-                fillOpacity: 0.8
+                fillOpacity: 0.5
             })
         },
 
@@ -68,7 +68,7 @@ d3.json(geodata).then(function(data) {
 
         legend.onAdd = function (map) {
             let div = L.DomUtil.create("div", "info legend"),
-            quakedepth = [0, 20, 40, 60, 80, 100];
+            quakedepth = [0, 10, 20, 30, 40, 50];
             
             for (var i = 0; i < quakedepth.length; i++) {
                 div.innerHTML += 
