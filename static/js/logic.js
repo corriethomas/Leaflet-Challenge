@@ -20,6 +20,14 @@ let geodata = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/signifi
 d3.json(geodata).then(function(data) {
     console.log(data);
 
+    // Create radius function
+    function radius(magnitude) {
+        if (magnitude === 0) {
+            return 1;
+        }
+        return magnitude * 3;
+    }
+
     // Create function to get the marker colors
     function markercolor(depth) {
         switch (true) {
