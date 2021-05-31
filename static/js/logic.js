@@ -62,7 +62,22 @@ d3.json(geodata).then(function(data) {
         onEachFeature: function (feature, layer) {
         layer.bindPopup("<h1>Earthquake ID: " + feature.id + "</h1> <hr> <h3>Magnitude: " + feature.properties.mag + "</h3>")
         .addTo(baseMap);
-        }
-    });    
-});
 
+        // Referred to Leaflet documentation to add legend (https://leafletjs.com/examples/choropleth/)
+        let legend = L.control({position: "bottomleft"});
+
+        legend.onAdd = function (map) {
+            let div = L.DomUtil.create("div", "info legend"),
+            quakedepth = [0, 20, 40, 60, 80, 100];
+            
+            for (var i = 0; i < quakedepth.length; i++) {
+                div.innerHTML += 
+                '<i style="background:' + markercolor(quakedepth[i] + 1) + '"></i> ' +
+                    quakedepth[i] + (quakedepth[i + 1] ? '&ndash;' + quakedepth[i + 1] + '<br>' : '+');
+            }
+            return div;
+        };
+
+        legend.addTo(baseMap);
+    }})
+});  
