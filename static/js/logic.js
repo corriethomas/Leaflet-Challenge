@@ -20,8 +20,22 @@ let geodata = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/signifi
 d3.json(geodata).then(function(data) {
     console.log(data);
 
+    // Create function to get the marker colors
     function markercolor(depth) {
-        
+        switch (true) {
+            case depth > 80:
+                return "red";
+            case depth > 60:
+                return "orange";
+            case depth > 40:
+                return "yellow";
+            case depth > 20:
+                return "green";
+            case depth > 0:
+                return "blue";
+            default:
+                return "purple"
+        }
     }
 });
 
