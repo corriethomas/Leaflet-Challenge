@@ -45,7 +45,30 @@ d3.json(geodata).then(function(data) {
                 return "purple"
         }
     }
+
+    // Style and bind the markers
+    L.geoJson(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: radius(feature.properties.mag),
+                fillColor: "orange",
+                color: "black",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            })
+        },
+
+        onEachFeature: function (feature, layer) {
+        layer.bindPopup("<h1>Earthquake ID: " + feature.id + "</h1> <hr> <h3>Magnitude: " + feature.properties.mag + "</h3>")
+        .addTo(baseMap);
+        }
+    });
+    
 });
+
+    // Create pop-up
+    
 
 // var earthquakes = [{
 //     location: [38.2296, 141.6646],
